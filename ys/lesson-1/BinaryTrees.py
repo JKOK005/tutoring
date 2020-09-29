@@ -16,7 +16,7 @@ class BinaryTree(object):
 	left 	= None
 	right 	= None
 
-	def __init__(self, data: int, left: BinaryTree, right: BinaryTree):
+	def __init__(self, data: int, left: "BinaryTree", right: "BinaryTree"):
 		self.data 	= data
 		self.left 	= left
 		self.right 	= right
@@ -24,10 +24,10 @@ class BinaryTree(object):
 	def get_data(self) -> int:
 		return self.data
 
-	def get_left(self) -> BinaryTree:
+	def get_left(self) -> "BinaryTree":
 		return self.left
 
-	def get_right(self) -> BinaryTree:
+	def get_right(self) -> "BinaryTree":
 		return self.right
 
 if __name__ == "__main__":
@@ -52,20 +52,12 @@ if __name__ == "__main__":
 										right = None,	
 									),
 
-							right = BinaryTree(
-										data  = None,
-										left  = None,
-										right = None,	
-									),
+							right =None,
 						),
 
 				right 	= BinaryTree(
 							data  = 3,
-							left  = BinaryTree(
-										data  = None,
-										left  = None,
-										right = None,	
-									),
+							left  = None,
 
 							right = BinaryTree(
 										data  = 5,
