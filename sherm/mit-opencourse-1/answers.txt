@@ -1,0 +1,48 @@
+Group 1:
+In ascending order
+- f1(n), f2(n), f4(n), f3(n).
+
+Group 2:
+In ascending order
+- f1(n), f4(n), f3(n), f2(n).
+
+Group 3:
+In ascending order
+- f4(n), f1(n), f3(n), f2(n)
+
+Select the correct asymptotic complexity of an algorithm with runtime
+T(n, n) where
+- O(N)
+
+Select the correct asymptotic complexity of an algorithm with runtime
+T(n, n) where
+- O(n lgn)
+
+Select the correct asymptotic complexity of an algorithm with runtime
+T(n, n) where
+- O(n)
+
+Is algorithm1 correct?
+- Yes
+
+Is algorithm2 correct?
+- Yes
+
+Is algorithm3 correct?
+- No
+
+Is algorithm4 correct?
+- Yes
+
+What is the worst-case runtime of algorithm1 on a problem of size n × n?
+- O(n lgn)
+
+What is the worst-case runtime of algorithm2 on a problem of size n × n?
+- O(n^2)
+
+What is the worst-case runtime of algorithm3 on a problem of size n × n?
+- O(n)
+
+What is the worst-case runtime of algorithm4 on a problem of size n × n?
+- O(n)
+
