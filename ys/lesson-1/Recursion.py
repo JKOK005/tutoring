@@ -61,8 +61,8 @@ if __name__ == "__main__":
 	print(">>>>>>>>>>> inorder <<<<<<<<<<<")
 	inorder(root = tree)
 
-	print(">>>>>>>>>>> pre_order <<<<<<<<<<<")
-	pre_order(root = tree)
+	# print(">>>>>>>>>>> pre_order <<<<<<<<<<<")
+	# pre_order(root = tree)
 
-	print(">>>>>>>>>>> post_order <<<<<<<<<<<")
-	post_order(root = tree)
+	# print(">>>>>>>>>>> post_order <<<<<<<<<<<")
+	# post_order(root = tree)
