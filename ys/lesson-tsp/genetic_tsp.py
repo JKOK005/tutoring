@@ -84,10 +84,13 @@ def breed(parent_1: [int], parent_2: [int]) -> [int]:
 
 	Cross over is done at the halfway point
 	"""
-	halfway_point = len(parent_1) // 2
+	halfway_point 	= len(parent_1) // 2
+	start_indx 		= random.randint(1, halfway_point)
+	end_indx 		= start_indx + halfway_point
+	child 			= parent_1[: start_indx] + parent_2[start_indx : end_indx] + parent_1[end_indx : ]
+	assert(len(child) == len(parent_1))
+	return child
 	
-	pass
-
 def breedN(candidate_routes: [[int]], N_iterations: int) -> [[int]]:
 	"""
 	Performs corss over mutation between parents N_iterations times
@@ -95,21 +98,28 @@ def breedN(candidate_routes: [[int]], N_iterations: int) -> [[int]]:
 	after_breeding 	 	 = []
 	for _ in range(N_iterations):
 		[parent_1, parent_2] = random.sample(candidate_routes, 2)
-		after_breeding.append(breed(parent_1 = parent_1, parent_2 = parent_2))
+		after_breeding.append(breed(parent_1 = parent_1.tolist(), parent_2 = parent_2.tolist()))
 	return after_breeding
 
 def mutate(candidate_routes: [[int]], prob_of_mutation: float) -> [int]:
 	"""
 	Mutates an existing route by swapping randomly selected positions based on a given probability
 	"""
-	pass
+	return candidate_routes
+
+def fitnessOfRoutes(candidate_routes: [[int]], cost_mat: np.ndarray) -> float:
+	"""
+	Determines the total fitness of all routes in caniddate_routes
+	"""
+	costs = list(map(lambda each_route: evaluateFitness(candidate_route = each_route, cost_mat = cost_mat), candidate_routes))	
+	return sum(costs)
 
 if __name__ == "__main__":
-	ITERATIONS 		= 100
+	ITERATIONS 		= 500
 	CITIES 			= 100
-	SAMPLE_ROUTES 	= 10000
+	SAMPLE_ROUTES 	= 1000
 	ELITES 			= 100
-	BREEDINGS 		= 9900
+	BREEDINGS 		= 1800
 
 	ADJACENCY_MAT 	= np.ones([CITIES, CITIES])
 	COST_MAT 		= np.random.randint(low = 0, high = 100, size=(CITIES, CITIES))
@@ -118,6 +128,8 @@ if __name__ == "__main__":
 
 	for _ in range(ITERATIONS):
 		(elites, others) 		= separateElites(N_elites = ELITES, candidate_routes = candidate_pool, cost_mat = COST_MAT)
-		best_routes_selection 	= filterByTournament(candidate_routes = others, N_per_tournament = 10)
+		best_routes_selection 	= filterByTournament(candidate_routes = others, N_per_tournament = 10, cost_mat = COST_MAT)
 		new_breeds 				= breedN(candidate_routes = best_routes_selection, N_iterations = BREEDINGS)
-
+		new_mutants 			= mutate(candidate_routes = new_breeds, prob_of_mutation = 0)
+		candidate_pool 			= elites + new_mutants
+		print("Score: {0}".format(fitnessOfRoutes(candidate_routes = elites, cost_mat = COST_MAT)))
